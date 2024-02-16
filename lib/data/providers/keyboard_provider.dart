@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final keyboardProvider = StateProvider<String>((ref) => '');
+final textEditingControllerProvider =
+    Provider<TextEditingController>((ref) => TextEditingController());

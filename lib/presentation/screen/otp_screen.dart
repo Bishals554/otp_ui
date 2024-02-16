@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:otp_ui/constant/color.dart';
+import 'package:otp_ui/data/providers/keyboard_provider.dart';
 import 'package:otp_ui/data/providers/timer_provider.dart';
+import 'package:otp_ui/presentation/widgets/custom_keyboard.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpScreen extends ConsumerWidget {
@@ -12,7 +13,8 @@ class OtpScreen extends ConsumerWidget {
     final timer = ref.watch(timerprovider);
     String formattedTimer =
         '${(timer ~/ 60).toString().padLeft(2, '0')}:${(timer % 60).toString().padLeft(2, '0')}';
-    const textStyle = TextStyle(color: ColorProfile.whiteColor, fontSize: 20);
+    final TextEditingController controller =
+        ref.watch(textEditingControllerProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -45,7 +47,9 @@ class OtpScreen extends ConsumerWidget {
               height: 20,
             ),
             Pinput(
+              controller: controller,
               defaultPinTheme: PinTheme(
+                  textStyle: const TextStyle(fontSize: 16),
                   width: 56,
                   height: 56,
                   decoration: BoxDecoration(
@@ -69,39 +73,7 @@ class OtpScreen extends ConsumerWidget {
                 ),
               ),
             const Spacer(),
-            Container(
-              color: Colors.red,
-              child: GridView.count(
-                crossAxisCount: 3,
-                childAspectRatio: 1.4,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: const <Widget>[
-                  Text('1', style: textStyle),
-                  Text('2', style: textStyle),
-                  Text('3', style: textStyle),
-                  Text('4', style: textStyle),
-                  Text('5', style: textStyle),
-                  Text('6', style: textStyle),
-                  Text('7', style: textStyle),
-                  Text('8', style: textStyle),
-                  Text('9', style: textStyle),
-                  Icon(
-                    Icons.backspace_outlined,
-                    color: Colors.white,
-                    size: 25,
-                  ),
-                  Text('0', style: textStyle),
-                  Icon(
-                    Icons.check_circle_outline,
-                    color: Colors.white,
-                    size: 25,
-                  )
-                ].map((key) {
-                  return Center(child: key);
-                }).toList(),
-              ),
-            ),
+            const CustomKeyboard()
           ],
         ),
       ),
