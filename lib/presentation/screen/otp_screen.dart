@@ -54,8 +54,8 @@ class OtpScreen extends ConsumerWidget {
               keyboardType: TextInputType.number,
               defaultPinTheme: PinTheme(
                   textStyle: const TextStyle(fontSize: 16),
-                  width: 56,
-                  height: 56,
+                  width: 55,
+                  height: 55,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: Colors.grey))),
