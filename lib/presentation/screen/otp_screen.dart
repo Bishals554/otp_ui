@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:otp_ui/data/providers/keyboard_provider.dart';
 import 'package:otp_ui/data/providers/timer_provider.dart';
@@ -47,7 +48,10 @@ class OtpScreen extends ConsumerWidget {
               height: 20,
             ),
             Pinput(
+              onTap: () {},
+              readOnly: true,
               controller: controller,
+              keyboardType: TextInputType.number,
               defaultPinTheme: PinTheme(
                   textStyle: const TextStyle(fontSize: 16),
                   width: 56,
