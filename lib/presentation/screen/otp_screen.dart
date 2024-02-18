@@ -48,8 +48,7 @@ class OtpScreen extends ConsumerWidget {
               height: 20,
             ),
             Pinput(
-              onTap: () {},
-              readOnly: true,
+              useNativeKeyboard: false,
               controller: controller,
               keyboardType: TextInputType.number,
               defaultPinTheme: PinTheme(

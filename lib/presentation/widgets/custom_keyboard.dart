@@ -56,7 +56,50 @@ class CustomKeyboard extends ConsumerWidget {
           } else if (key == 'check') {
             return Center(
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (controller.text.length == 6) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            actionsAlignment: MainAxisAlignment.center,
+                            actions: [
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blue),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Ok',
+                                      style: TextStyle(color: Colors.white)))
+                            ],
+                            title: const Center(child: Text("Success")),
+                            content: const Text("OTP Verified Successfully"),
+                          );
+                        },
+                      );
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Erroe'),
+                            content: const Text('Invalid OTP'),
+                            actions: [
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blue),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Ok',
+                                      style: TextStyle(color: Colors.white)))
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
                   icon: const Icon(
                     Icons.check_circle_outline,
                     color: Colors.white,
